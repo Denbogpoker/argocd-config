@@ -3,4 +3,4 @@ namespace: argocd
 repositoryURL: https://github.com/Denbogpoker/argocd-config.git
 repositoryName: argocd-apps-config
 repositoryType: git
-targetRevision: no-task-release-poc
+targetRevision: main
