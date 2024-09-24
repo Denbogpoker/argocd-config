@@ -1,0 +1,9 @@
+configMap:
+  allowLists:
+    getSiteConfigFop: "{{ .Values.environmentConfig.clients.orderAdapter }}"
+    getSiteLocation: "{{ .Values.environmentConfig.clients.orderAdapter }}"
+    createSiteConfig: "{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }}"
+    updatePartialSiteConfig: "{{ .Values.environmentConfig.clients.clientCredentialsService }}"
+    getSiteConfig: "{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }}"
+  otel:
+    otelInstrumentationCommonDefaultEnabled: "true" 

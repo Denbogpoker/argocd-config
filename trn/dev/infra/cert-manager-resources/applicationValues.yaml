@@ -1,0 +1,5 @@
+namespace: argocd
+hostedZoneName: sndbx.dev.transcendplatform.com
+dnsZones:
+  - name: sndbx.dev.transcendplatform.com
+  - name: api.sndbx.dev.transcendplatform.com

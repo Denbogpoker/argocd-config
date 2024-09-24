@@ -1,0 +1,5 @@
+configMap:
+  allowLists:
+    startOfDay:   "{{ .Values.environmentConfig.clients.fpsStoreConfig }},{{ .Values.environmentConfig.clients.gravity }}, {{ .Values.environmentConfig.clients.systemTests }}, {{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.frontEndTests }}"
+  otel:
+    otelInstrumentationCommonDefaultEnabled: "true"
