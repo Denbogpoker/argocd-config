@@ -1,14 +1,14 @@
 microservices:
- - name: card-pin
-   applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
-   version: "1.0.0-6e1eb23"
-   namespace: apps
-   chart: helm/card-pin
- - name: client-credentials
-   applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
-   version: "1.0.0-7365e1e"
-   namespace: apps
-   chart: helm/client-credentials
+#  - name: card-pin
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-6e1eb23"
+#    namespace: apps
+#    chart: helm/card-pin
+#  - name: client-credentials
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-7365e1e"
+#    namespace: apps
+#    chart: helm/client-credentials
 #  - name: dlq-processor
 #    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
 #    version: "1.0.0-f43eb8a"
@@ -66,7 +66,7 @@ microservices:
 #    chart: helm/ods
  - name: order-adapter
    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
-   version: "1.0.0-54a739e"
+   version: "1.0.0-854b8bb"
    namespace: apps
    chart: helm/order-adapter
 #  - name: pickadmin
