@@ -1,5 +1,5 @@
 environmentConfig:
-  envName: trn
+  envName: dev
   cluster: "https://kubernetes.default.svc"
   namespace: apps
   keyVaulName: "kv-dev-northeurope-sndbx"
