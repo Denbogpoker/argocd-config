@@ -1,0 +1,15 @@
+name: Sync TRN-STG with TRN-DEV
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 6 * * *"
+jobs:
+  sync-trn-stg-with-trn-dev:
+    concurrency: sync-stg-with-dev-${{ github.ref }}
+    uses: TDS/tds-automation/.github/workflows/promote-environment.yml@main
+    with:
+      tenant_from: "trn"
+      env_from: "stg"
+      tenant_to: "trn"
+      env_to: "dev"
+    secrets: inherit

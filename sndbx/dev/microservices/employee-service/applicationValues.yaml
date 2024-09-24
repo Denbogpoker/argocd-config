@@ -1,0 +1,9 @@
+configMap:
+  allowLists:
+    saveEmployee: "{{ .Values.environmentConfig.clients.employeeService }},{{ .Values.environmentConfig.clients.tokenExchangeService }}"
+    findEmployees: "{{ .Values.environmentConfig.clients.employeeService }},{{ .Values.environmentConfig.clients.operationsDataService }}"
+    getEmployeeByIdentityProvider: "{{ .Values.environmentConfig.clients.employeeService }},{{ .Values.environmentConfig.clients.tokenExchangeService }},{{ .Values.environmentConfig.clients.operationsDataService }}"
+    getEmployee: "{{ .Values.environmentConfig.clients.employeeService }},{{ .Values.environmentConfig.clients.tokenExchangeService }},{{ .Values.environmentConfig.clients.operationsDataService }},{{ .Values.environmentConfig.clients.pickingService }}"
+    deleteEmployee: "{{ .Values.environmentConfig.clients.employeeService }}"
+  otel:
+    otelInstrumentationCommonDefaultEnabled: "true"

@@ -1,0 +1,4 @@
+apiVersion: v1
+description: secure-http-requests-cronjob
+name: secure-http-requests-cronjob
+version: "1.0.0"

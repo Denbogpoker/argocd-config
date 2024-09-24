@@ -1,0 +1,41 @@
+{{- range $index, $application := .Values.microservices }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $.Values.clientValues.clientName }}-{{ $.Values.environmentConfig.envName }}-{{ $application.name }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    microservices: {{ $.Values.clientValues.clientName }}-{{ $.Values.environmentConfig.envName }}
+spec:
+  project: {{ $.Values.clientValues.clientName }}-{{ $.Values.environmentConfig.envName }}
+  sources:
+    - repoURL: "{{ $application.applicationRepositoryUrl }}"
+      targetRevision: "{{ $application.version }}"
+      {{- if $application.path }}
+      path: "{{ $application.path }}"
+      {{- end }}
+      {{- if $application.chart }}
+      chart: "{{ $application.chart }}"
+      {{- end }}
+      helm:
+        releaseName: "{{ $application.name }}"
+        valueFiles:
+          - $values/globalValues.yaml
+          - $values/{{ $.Values.clientValues.clientName }}/clientValues.yaml
+          - $values/{{ $.Values.clientValues.clientName }}/{{ $.Values.environmentConfig.envName }}/environmentValues.yaml
+          - $values/{{ $.Values.clientValues.clientName }}/{{ $.Values.environmentConfig.envName }}/microservices/{{ $application.name }}/applicationValues.yaml
+    - repoURL: {{ $.Values.repositoryURL }}
+      targetRevision: {{ $.Values.ref }}
+      ref: values
+  destination:
+    server: {{ $.Values.environmentConfig.cluster }}
+    namespace: {{ $application.namespace }}
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
+{{- end }}

@@ -1,0 +1,23 @@
+name: prodprojservice-buffer-sync-cronjob
+
+cronjob:
+  redeliveryEvents:
+    suspend: false
+    schedule: "0 1 * * *"
+
+image:
+  tag: "91ddd72"
+
+args:
+  - "-clientId"
+  - "{{ .Values.environmentConfig.clients.ppsSyncCronJob }}"
+  - "-keyVaultUri"
+  - "{{ .Values.environmentConfig.keyVaultUrl }}"
+  - "-secretName"
+  - "pps-sync-cronjob-secret"
+  - "-tokenEndpoint"
+  - "http://issue-token.apps.svc.cluster.local:8080/token"
+  - "-endpointToTrigger"
+  - "http://prodprojservice.apps.svc.cluster.local:8284/v1/productProjection/ranges"
+  - "-endpointHttpMethod"
+  - "GET"

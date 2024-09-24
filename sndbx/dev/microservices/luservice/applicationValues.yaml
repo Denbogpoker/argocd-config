@@ -1,0 +1,12 @@
+configMap:
+  allowLists:
+    GenTileForAllStoresV2: "{{ .Values.environmentConfig.clients.luTileGridSyncCronJob }}"
+    CreateStoreConfigV1: "{{ .Values.environmentConfig.clients.fpsStoreConfig }}"
+    UpdateStoreConfigV1: "{{ .Values.environmentConfig.clients.fpsStoreConfig }}"
+    GetStoreConfigV1: "{{ .Values.environmentConfig.clients.fpsStoreConfig }}"
+    GetLuOptimizerStoreConfigV1: "{{ .Values.environmentConfig.clients.fpsStoreConfig }}"
+    CreateLuOptimizerStoreConfigV1: "{{ .Values.environmentConfig.clients.fpsStoreConfig }}"
+    UpdateLuOptimizerStartModV1: "{{ .Values.environmentConfig.clients.fpsStoreConfig }}"
+    UpdateLuDimensionsV1: "{{ .Values.environmentConfig.clients.fpsStoreConfig }}"
+  otel:
+    otelInstrumentationCommonDefaultEnabled: "true"

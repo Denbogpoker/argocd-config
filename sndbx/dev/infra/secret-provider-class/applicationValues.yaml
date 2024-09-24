@@ -1,0 +1,43 @@
+k8s_secrets:
+  # - k8s_secret_name: "couchbase-capella-cert"
+  #   k8s_secret_type: "kubernetes.io/Opaque"
+  #   data:
+  #     - k8s_secret_key: "couchbase.pem"
+  #       kv_secret_name: "couchbase-capella-cert"
+  - k8s_secret_name: "tds-issue-token-client-secret"
+    k8s_secret_type: "kubernetes.io/Opaque"
+    data:
+      - k8s_secret_key: "tds-issue-token-client-secret"
+        kv_secret_name: "tds-issue-token-client-secret"
+  - k8s_secret_name: "tds-issue-token-rsa-key"
+    k8s_secret_type: "kubernetes.io/Opaque"
+    data:
+      - k8s_secret_key: "tds-issue-token-rsa-key"
+        kv_secret_name: "tds-issue-token-rsa-key"
+  # - k8s_secret_name: "prometheus-scraping"
+  #   k8s_secret_type: "kubernetes.io/Opaque"
+  #   data:
+  #     - k8s_secret_key: "host"
+  #       kv_secret_name: "prometheus-host"
+  #     - k8s_secret_key: "username"
+  #       kv_secret_name: "prometheus-id"
+  #     - k8s_secret_key: "password"
+  #       kv_secret_name: "grafana-scraping-ap-api-key"
+  # - k8s_secret_name: "loki-scraping"
+  #   k8s_secret_type: "kubernetes.io/Opaque"
+  #   data:
+  #     - k8s_secret_key: "host"
+  #       kv_secret_name: "loki-host"
+  #     - k8s_secret_key: "username"
+  #       kv_secret_name: "loki-id"
+  #     - k8s_secret_key: "password"
+  #       kv_secret_name: "grafana-scraping-ap-api-key"
+  # - k8s_secret_name: "tempo-scraping"
+  #   k8s_secret_type: "kubernetes.io/Opaque"
+  #   data:
+  #     - k8s_secret_key: "host"
+  #       kv_secret_name: "tempo-host"
+  #     - k8s_secret_key: "username"
+  #       kv_secret_name: "tempo-id"
+  #     - k8s_secret_key: "password"
+  #       kv_secret_name: "grafana-scraping-ap-api-key"

@@ -1,0 +1,5 @@
+globalValues:
+  tenantId: "e81524c6-bbb1-4451-b9c1-e0b1b797a6dd"
+  serviceAccountName: workload-identity-kv-sa
+  image:
+    registry: acrnortheuropedevops.azurecr.io

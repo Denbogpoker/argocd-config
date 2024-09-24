@@ -1,0 +1,60 @@
+{{- range $key, $val := .Values.environments }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ $val.client }}-{{ $val.environmentName }}
+  namespace: {{ $.Values.namespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: {{ $val.client }}-{{ $val.environmentName }}
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: '*'
+      server: "*"
+      name: "*"
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $val.client }}-{{ $val.environmentName }}-root
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    rootApps: {{ $val.client  }}-{{ $val.environmentName }}
+spec:
+  project: {{ $val.name }}
+  sources:
+    - repoURL: {{ $.Values.repositoryURL }}
+      path: .argocd-config/envApp
+      targetRevision: {{ $val.ref }}
+      helm:
+        valueFiles:
+          - $values/globalValues.yaml
+          - $values/{{ $val.client }}/clientValues.yaml
+          - $values/{{ $val.client }}/{{ $val.environmentName }}/environmentValues.yaml
+          - $values/infrastructure.yaml
+          - $values/microservices.yaml
+        parameters:
+          - name: ref
+            value: {{ $val.ref }}
+          - name: repositoryURL
+            value: {{ $.Values.repositoryURL }}
+    - repoURL: {{ $.Values.repositoryURL }}
+      targetRevision: {{ $val.ref }}
+      ref: values
+  destination:
+    server: {{ $.Values.server }}
+    namespace: {{ $.Values.namespace }}
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
+{{- end }}

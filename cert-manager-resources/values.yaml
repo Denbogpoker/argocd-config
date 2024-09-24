@@ -1,0 +1,19 @@
+clientValues:
+  clientName: dummy
+
+environmentConfig:
+  envName: dummy
+  managedIdClientId: "dummy"
+  resourceGroup: "dummy"
+  subscriptionId: "dummy"
+
+server: https://acme-v02.api.letsencrypt.org/directory
+email: 304_DevOps@tesco.com
+baseUrl: transcendplatform.com
+DnsEnvironment: AzurePublicCloud
+hostedZoneName: "dummy"
+namespace: apps
+dnsZones:
+    - name: trn.transcendplatform.com
+    - name: api.trn.transcendplatform.com
+

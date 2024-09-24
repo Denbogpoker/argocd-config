@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+data:
+  mockserver.properties:{{ .Values.mockserver.properties | toYaml | indent 2 }}
+  initializerJson.json:{{ .Values.mockserver.initializerJson | toYaml | indent 2 }}

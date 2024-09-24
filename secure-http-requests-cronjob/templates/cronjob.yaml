@@ -1,0 +1,63 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    env: {{ .Values.environmentConfig.envName }}
+    app: {{ .Values.name }}
+    version: {{ .Values.image.tag }}
+spec:
+  timeZone: {{ .Values.environmentConfig.timeZone }}
+  schedule: {{ .Values.cronjob.redeliveryEvents.schedule }}
+  concurrencyPolicy: Replace
+  suspend: {{ .Values.cronjob.redeliveryEvents.suspend }}
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            azure.workload.identity/use: "true"
+            env: {{ .Values.environmentConfig.envName }}
+            app: {{ .Values.name }}
+        spec:
+          serviceAccountName: {{ .Values.globalValues.serviceAccountName }}
+          containers:
+            - name: {{ .Values.name }}
+              image: "{{ .Values.globalValues.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+              imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+              {{- with .Values.args }}
+              args:
+                {{- range $arg := . }}
+                - {{ tpl $arg $ }}
+                {{- end }}
+              {{- end }}
+              env:
+                - name: APP
+                  value: {{ .Values.name }}
+                - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                  value: {{ tpl .Values.envs.otelExporterOtlpEndpoint . }}                  
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              {{- with .Values.resources }}
+              resources:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+          {{- with .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          restartPolicy: Never
+          terminationGracePeriodSeconds: 30
+          dnsPolicy: ClusterFirst
+          securityContext: {}
+          schedulerName: default-scheduler
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1

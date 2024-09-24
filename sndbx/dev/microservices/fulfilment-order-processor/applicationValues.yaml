@@ -1,0 +1,9 @@
+configMap:
+  allowLists:
+    fopScheduler: "{{ .Values.environmentConfig.clients.fulfilmentOrderProcessorSchedulerCronJob }},{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }}"
+    forecast: "{{ .Values.environmentConfig.clients.operationsDataService }}"
+    getOrderById: "{{ .Values.environmentConfig.clients.logisticUnitService }},{{ .Values.environmentConfig.clients.systemTests }},{{ .Values.environmentConfig.clients.orderAdapter }},{{ .Values.environmentConfig.clients.gravity }},{{ .Values.environmentConfig.clients.reportsService }},{{ .Values.environmentConfig.clients.clientCredentialsService }}"
+    getOrderByIdV1: "{{ .Values.environmentConfig.clients.logisticUnitService }},{{ .Values.environmentConfig.clients.orderAdapter }}, {{ .Values.environmentConfig.clients.pickingService }}, {{ .Values.environmentConfig.clients.labelPrintingService }},{{ .Values.environmentConfig.clients.clientCredentialsService }}"
+    createOrderGroups: "{{ .Values.environmentConfig.clients.fulfilmentOrderProcessorGroupingCronJob }},{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }}"
+  otel:
+    otelInstrumentationCommonDefaultEnabled: "true"  

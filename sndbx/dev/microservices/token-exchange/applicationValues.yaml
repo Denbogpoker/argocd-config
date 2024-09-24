@@ -1,0 +1,3 @@
+configMap:
+  allowLists:
+    validateToken: "{{ .Values.environmentConfig.clients.issueTokenService }}"

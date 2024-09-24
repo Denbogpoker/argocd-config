@@ -1,0 +1,61 @@
+name: Scan Deployed Container Images
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+    inputs:
+      subscription:
+        type: string
+        default: 'all'
+        description: Subscription name. 'all' is equal to all subscription.
+      environment:
+        type: string
+        default: 'all'
+        description: Environment name. 'all' is equal to all environments.
+      application:
+        type: string
+        default: 'all'
+        description: Application name equal to catalog in apps dir. 'all' is equal to all applications.
+
+jobs:
+  scan-container-images:
+    runs-on: self-hosted
+    steps:
+      - name: "Check out"
+        uses: actions/checkout@v3
+        with:
+          token: ${{ env.GITHUB_PAT }}
+
+      - name: "Check out Common Actions"
+        uses: actions/checkout@v3
+        with:
+          repository: TDS/tds-automation
+          path: ".actions"
+          token: ${{ env.GITHUB_PAT }}
+
+      - uses: snyk/actions/setup@master
+
+      - name: "Export variables from KeyVault secrets"
+        uses: TDS/tds-automation/.github/actions/terraform-secrets-from-kv@main
+        with:
+          servicePrincipalId: ${{ secrets.COMMON_KV_SP_ID }}
+          servicePrincipalSecret: ${{ secrets.COMMON_KV_SP_SECRET }}
+          tenantId: ${{ secrets.COMMON_KV_SP_TENANT_ID }}
+          keyVaultName: ${{ vars.COMMON_KV_NAME }}
+          tenant: "devops"
+          environment: "prod"
+
+      - name: "Define variables"
+        shell: bash
+        run: |
+          echo "::add-mask::${ARM_CLIENT_ID}"
+          echo SNYK_REGISTRY_USERNAME=$ARM_CLIENT_ID >> $GITHUB_ENV
+          echo "::add-mask::${ARM_CLIENT_SECRET}"
+          echo SNYK_REGISTRY_PASSWORD=$ARM_CLIENT_SECRET >> $GITHUB_ENV
+
+      - name: Scan Images
+        uses: ./.github/actions/scan-images
+        with:
+          subscription: ${{ inputs.subscription || 'all' }}
+          environment: ${{ inputs.environment || 'all' }}
+          application: ${{ inputs.application || 'all' }}

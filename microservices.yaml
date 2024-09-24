@@ -1,0 +1,156 @@
+microservices:
+ - name: card-pin
+   applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+   version: "1.0.0-6e1eb23"
+   namespace: apps
+   chart: helm/card-pin
+ - name: client-credentials
+   applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+   version: "1.0.0-7365e1e"
+   namespace: apps
+   chart: helm/client-credentials
+#  - name: dlq-processor
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-f43eb8a"
+#    namespace: apps
+#    chart: helm/dlq-processor
+#  - name: employee-service
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-5aae727"
+#    namespace: apps
+#    chart: helm/employee-service
+#  - name: fulfilment-order-processor
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-0c056ad"
+#    namespace: apps
+#    chart: helm/fulfilment-order-processor
+#  - name: fps-store-config
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-5857ac5"
+#    namespace: apps
+#    chart: helm/fps-store-config
+#  - name: fulfilment
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.115.0"
+#    namespace: apps
+#    chart: helm/fulfilment
+#  - name: gravity
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.111.0"
+#    namespace: apps
+#    chart: helm/gravity
+#  - name: issue-token
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-ef0d4f3"
+#    namespace: apps
+#    chart: helm/issue-token
+#  - name: labelprintingservice
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-fd1d425"
+#    namespace: apps
+#    chart: helm/labelprintingservice
+#  - name: loading-service
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-f667202"
+#    namespace: apps
+#    chart: helm/loading-service
+#  - name: luservice
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-22edefd"
+#    namespace: apps
+#    chart: helm/luservice
+#  - name: ods
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-f9a88bd"
+#    namespace: apps
+#    chart: helm/ods
+ - name: order-adapter
+   applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+   version: "1.0.0-54a739e"
+   namespace: apps
+   chart: helm/order-adapter
+#  - name: pickadmin
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-c766594"
+#    namespace: apps
+#    chart: helm/pickadmin
+#  - name: pickingservice
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-578b7ac"
+#    namespace: apps
+#    chart: helm/pickingservice
+#  - name: printing-adapter
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-c4cab42"
+#    namespace: apps
+#    chart: helm/printing-adapter
+#  - name: prodprojservice
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-4fb95f4"
+#    namespace: apps
+#    chart: helm/prodprojservice
+#  - name: product-adapter
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-a7e2065"
+#    namespace: apps
+#    chart: helm/product-adapter
+#  - name: token-exchange
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-5eb39af"
+#    namespace: apps
+#    chart: helm/token-exchange
+#  - name: webhook-delivery-service
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-30fe554"
+#    namespace: apps
+#    chart: helm/webhook-delivery-service
+#  - name: reports-service
+#    applicationRepositoryUrl: acrnortheuropedevops.azurecr.io
+#    version: "1.0.0-a9d46e9"
+#    namespace: apps
+#    chart: helm/reports-service
+#  - name: mockserver
+#    version: main
+#    applicationRepositoryUrl: https://github.dev.global.tesco.org/TDS/helm-charts.git
+#    namespace: apps
+#    path: mockserver
+#  - name: mountebank
+#    version: main
+#    applicationRepositoryUrl: https://github.dev.global.tesco.org/TDS/helm-charts.git
+#    namespace: apps
+#    path: mountebank
+ - name: identity-config
+   applicationRepositoryUrl: https://github.com/Denbogpoker/argocd-config.git
+   version: main
+   namespace: apps
+   path: identity-config
+#  - name: webhook-delivery-service-retry-cronjob
+#    applicationRepositoryUrl: https://github.dev.global.tesco.org/TDS/helm-charts.git
+#    version: main
+#    namespace: apps
+#    path: secure-http-requests-cronjob
+#  - name: fulfilment-order-processor-grouping-cronjob
+#    applicationRepositoryUrl: https://github.dev.global.tesco.org/TDS/helm-charts.git
+#    version: main
+#    namespace: apps
+#    path: secure-http-requests-cronjob
+#  - name: fulfilment-order-processor-scheduler-cronjob
+#    applicationRepositoryUrl: https://github.dev.global.tesco.org/TDS/helm-charts.git
+#    version: main
+#    namespace: apps
+#    path: secure-http-requests-cronjob
+#  - name: luservice-sync-cronjob
+#    applicationRepositoryUrl: https://github.dev.global.tesco.org/TDS/helm-charts.git
+#    version: main
+#    namespace: apps
+#    path: secure-http-requests-cronjob
+#  - name: pickingservice-buffer-check-cronjob
+#    applicationRepositoryUrl: https://github.dev.global.tesco.org/TDS/helm-charts.git
+#    version: main
+#    namespace: apps
+#    path: secure-http-requests-cronjob
+#  - name: prodprojservice-buffer-sync-cronjob
+#    applicationRepositoryUrl: https://github.dev.global.tesco.org/TDS/helm-charts.git
+#    version: main
+#    namespace: apps
+#    path: secure-http-requests-cronjob

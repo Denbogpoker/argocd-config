@@ -1,0 +1,32 @@
+name: Deploy Release To Environment
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: Release tag
+        required: true
+      tenant_to:
+        description: Tenant where new versions should be installed
+        type: choice
+        default: "fs"
+        options:
+          - "trn"
+          - sndbx
+          - fs
+      env_to:
+        description: Environment
+        type: choice
+        default: prod
+        options:
+          - dev
+          - stg
+          - prod
+jobs:
+  release:
+    concurrency: release-environment-${{ github.ref }}
+    uses: TDS/tds-automation/.github/workflows/deploy-release.yml@main
+    with:
+      release: ${{ inputs.release }}
+      tenant_to: ${{ inputs.tenant_to }}
+      env_to: ${{ inputs.env_to }}
+    secrets: inherit

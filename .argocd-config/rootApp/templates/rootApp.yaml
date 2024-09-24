@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: root-project-new
+  namespace: {{ .Values.namespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: "Root Project"
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: '*'
+      server: "*"
+      name: "*"
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Chart.Name }}
+  namespace: {{ .Values.namespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    rootApps: {{ .Chart.Name }}
+spec:
+  project: root-project-new
+  sources:
+    - repoURL: {{ .Values.repositoryURL }}
+      path: .argocd-config/rootApp
+      targetRevision: {{ .Values.targetRevision }}
+      helm:    
+        valueFiles:
+          - $values/env.yaml
+    - repoURL: {{ .Values.repositoryURL }}
+      targetRevision: {{ .Values.targetRevision }}
+      ref: values    
+  destination:
+    server: {{ .Values.server }}
+    namespace: {{ .Values.namespace }}
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

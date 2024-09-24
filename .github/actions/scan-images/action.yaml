@@ -1,0 +1,29 @@
+name: Scan images
+description: Scan container images using Snyk
+
+inputs:
+  subscription:
+    description: Use subscription name or 'all'.
+    required: true
+  environment:
+    description: Use environment name or 'all'.
+    required: true
+  application:
+    description: Use app name or 'all'.
+    required: true
+
+runs:
+  using: "composite"
+  # Defining the action steps(Just one step to be simple)
+  steps:
+    - name: Install libraries
+      run: |
+        pip install -r ./.github/actions/scan-images/requirements.txt
+      shell: bash -ieo pipefail {0}
+    - name: Scan images
+      run: |
+        helm registry login acrnortheuropedevops.azurecr.io \
+          --username ${ARM_CLIENT_ID} \
+          --password ${ARM_CLIENT_SECRET}
+        python ./.github/actions/scan-images/main.py ${{ inputs.subscription }} ${{ inputs.environment }} ${{ inputs.application }}
+      shell: bash -ieo pipefail {0}

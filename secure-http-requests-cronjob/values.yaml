@@ -1,0 +1,55 @@
+name: dummy
+globalValues:
+  serviceAccountName: workload-identity-kv-sa
+  image:
+    registry: acrnortheuropedevops.azurecr.io
+
+clientValues:
+  clientName: "dummyClientName"
+
+environmentConfig:
+  envName: "dummy"
+  namespace: "apps"
+  keyVaultUrl: "dummy"
+  timeZone: "Europe/London"
+  clients:
+    mockCronjob: "mockCronjob"
+
+cronjob:
+  redeliveryEvents:
+    schedule: "0/15 * * * *"
+    suspend: "false"
+  id: "dummy"
+
+args:
+  - "-clientId"
+  - "{{ .Values.environmentConfig.clients.mockCronjob }}"
+  - "-keyVaultUri"
+  - "{{ .Values.environmentConfig.keyVaultUrl }}"
+  - "-secretName"
+  - "mockCronjob-cronjob-secret"
+  - "-tokenEndpoint"
+  - "http://issue-token.apps.svc.cluster.local:8080/token"
+  - "-endpointToTrigger"
+  - "http://mockCronjob.apps.svc.cluster.local:8189/trigger-redelivery"
+
+envs:
+  otelExporterOtlpEndpoint: 'http://{{ .Values.clientValues.clientName}}-{{ .Values.environmentConfig.envName }}-grafana-alloy.monitoring.svc.cluster.local:4317'
+
+image:
+  repository: "secure-http-requests"
+  tag: "latest"
+  imagePullPolicy: "Always"
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+nodeSelector:
+  component: apps
+affinity: {}
+tolerations: {}

@@ -1,0 +1,27 @@
+{
+  "imposters": [
+    {
+      "port": 5555,
+      "protocol": "tcp",
+      "mode": "binary",
+      "stubs": [
+        {
+          "responses": [
+            {
+              "is": {
+                "data": "AjAxNCwwLDAsMTE3OCwwMDAsMCwwLDAsMDAwLDAsMCwwAwoCMDEyOCwwLDAsMCwwLDIsNiwwLDAwMDAwMDAwLDEsMDAwAwoCMDEyMzQsMAMK"
+              }
+            }
+          ],
+          "predicates": [
+            {
+              "contains": {
+                "data": "fkhT"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

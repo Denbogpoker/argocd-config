@@ -1,0 +1,19 @@
+{{- range .Values.RunnerDeployment }}
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: {{ .name }}
+  namespace: {{ .namespace }}
+spec:
+  scaleTargetRef:
+    name: {{ .name }}
+  minReplicas: {{ .minNumberOfRunners }}
+  maxReplicas: {{ .maxNumberOfRunners }}
+  metrics:
+    - type: PercentageRunnersBusy
+      scaleUpThreshold: "0.75"
+      scaleDownThreshold: "0.25"
+      scaleUpFactor: "2"
+      scaleDownFactor: "0.5"
+---
+{{- end }}

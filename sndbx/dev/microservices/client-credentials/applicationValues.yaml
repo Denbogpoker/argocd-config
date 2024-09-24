@@ -1,0 +1,9 @@
+configMap:
+  allowLists:
+    createClient: "{{ .Values.environmentConfig.clients.clientCredentialsService }}"
+    validateClient: "{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.issueTokenService }}"
+    getClient: "{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.issueTokenService }}"
+    updateClient: "{{ .Values.environmentConfig.clients.clientCredentialsService }}"
+    secretManagement: "{{ .Values.environmentConfig.clients.clientCredentialsService }}"
+    deleteClient: "{{ .Values.environmentConfig.clients.clientCredentialsService }}"
+    getAllClients: "{{ .Values.environmentConfig.clients.clientCredentialsService }}"

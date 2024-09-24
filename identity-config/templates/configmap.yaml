@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    env: {{ .Values.environmentConfig.envName }}
+    app: {{ .Values.name }}
+    tenant: {{ .Values.clientValues.clientName }}
+data:
+  IDENTITY_JWKS_URI: "{{ .Values.configMap.app.jwksUri }}"
+  IDENTITY_VALIDATE_TOKEN_URI: "{{ .Values.configMap.app.validateTokenUri }}"
+  IDENTITY_ISSUE_TOKEN_URI: "{{ .Values.configMap.app.issueTokenUri }}"
+  IDENTITY_VALID_ISSUER: "{{ .Values.environmentConfig.tokenIssuer }}"

@@ -1,0 +1,21 @@
+name: luservice-sync-cronjob
+
+image:
+  tag: "91ddd72"
+
+cronjob:
+  redeliveryEvents:
+    suspend: false
+    schedule: "0 1 * * *"
+
+args:
+  - "-clientId"
+  - "{{ .Values.environmentConfig.clients.luTileGridSyncCronJob }}"
+  - "-keyVaultUri"
+  - "{{ .Values.environmentConfig.keyVaultUrl }}"
+  - "-secretName"
+  - "lu-tile-grid-sync-cronjob-client-secret"
+  - "-tokenEndpoint"
+  - "http://issue-token.apps.svc.cluster.local:8080/token"
+  - "-endpointToTrigger"
+  - "http://luservice.apps.svc.cluster.local:8194/v2/generateTileGridForAllStores"

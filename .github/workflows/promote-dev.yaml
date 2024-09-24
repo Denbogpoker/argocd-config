@@ -1,0 +1,17 @@
+name: New image was build from feature branch
+run-name: App ${{ github.event.client_payload.app_name }}:${{ github.event.client_payload.image_tag }} has been released on "TRN DEV environment"
+
+on:
+  repository_dispatch:
+    types:
+      - IMAGE_RELEASED_FEATURE_BRANCH
+
+jobs:
+  release-new-version:
+    uses: TDS/tds-automation/.github/workflows/release-new-version.yml@main
+    with:
+      app_name: ${{ github.event.client_payload.app_name }}
+      image_tag: ${{ github.event.client_payload.image_tag }}
+      tenant: trn
+      env: dev
+    secrets: inherit

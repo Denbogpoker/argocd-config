@@ -1,0 +1,38 @@
+globalValues:
+  tenantId: "dummy"
+  serviceAccountName: workload-identity-kv-sa
+
+clientValues:
+  clientName: dummy
+
+environmentConfig:
+  envName: dummy
+  keyVaulName: "dummy"
+  managedIdClientId: "dummy"
+  resourceGroup: "dummy"
+  subscriptionId: "dummy"
+
+deployment:
+  name: secret-sync
+
+resources:
+  limits:
+    cpu: 800m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+
+k8s_secrets:
+  - k8s_secret_name: "dummy_secret_name"
+    k8s_secret_type: "Opaque"
+    k8s_secret_label: "argocd.argoproj.io/secret-type: cluster"
+    k8s_secret_annotations: "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: monitoring"
+    data:
+      - k8s_secret_key: "name"
+        kv_secret_name: "kv_secret_name"
+      - k8s_secret_key: "server"
+        kv_secret_name: "kv_secret_name"
+      - k8s_secret_key: "config"
+        kv_secret_name: "kv_secret_name"
+

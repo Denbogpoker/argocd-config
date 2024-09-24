@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.clientValues.clientName }}-{{ .Values.environmentConfig.envName }}-secret-provider-class
+  labels:
+    env: {{ .Values.environmentConfig.envName }}
+    app: {{ .Values.deployment.name }}
+    azure.workload.identity/use: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      env: {{ .Values.environmentConfig.envName }}
+      app: {{ .Values.deployment.name }}
+  template:
+    metadata:
+      labels:
+        env: {{ .Values.environmentConfig.envName }}
+        app: {{ .Values.deployment.name }}
+    spec:
+      serviceAccountName: {{ .Values.globalValues.serviceAccountName }}
+      containers:
+        - name: secret-provider-class
+          image: nginx:1.14.2
+          {{- with .Values.resources }}
+          resources:
+{{ toYaml . | indent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: secrets-store-inline
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: {{ .Values.clientValues.clientName }}-{{ .Values.environmentConfig.envName }}-{{ .Values.environmentConfig.keyVaulName }}

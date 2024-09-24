@@ -1,0 +1,52 @@
+{{- range $index, $application := .Values.infrastructureApps }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $.Values.clientValues.clientName }}-{{ $.Values.environmentConfig.envName }}-{{ $application.name }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    infra: {{ $.Values.clientValues.clientName }}-{{ $.Values.environmentConfig.envName }}
+spec:
+  {{- if eq $application.name "cert-manager" }}
+  ignoreDifferences:
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      name: {{ $.Values.clientValues.clientName }}-{{ $.Values.environmentConfig.envName }}-{{ $application.name }}-webhook
+      jqPathExpressions:
+        - .webhooks[].namespaceSelector.matchExpressions[] | select(.key == "control-plane")
+        - .webhooks[].namespaceSelector.matchExpressions[] | select(.key == "kubernetes.azure.com/managedby")
+  {{- end }}
+  project: {{ $.Values.clientValues.clientName }}-{{ $.Values.environmentConfig.envName }}
+  sources:
+    - repoURL: "{{ $application.applicationRepositoryUrl }}"
+      targetRevision: "{{ $application.version }}"
+      {{- if $application.path }}
+      path: "{{ $application.path }}"
+      {{- end }}
+      {{- if $application.chart }}
+      chart: "{{ $application.chart }}"
+      {{- end }}
+      helm:
+        {{- if $application.skipCrds }}
+        skipCrds: true
+        {{- end }}
+        valueFiles:
+          - $values/globalValues.yaml
+          - $values/{{ $.Values.clientValues.clientName }}/clientValues.yaml
+          - $values/{{ $.Values.clientValues.clientName }}/{{ $.Values.environmentConfig.envName }}/environmentValues.yaml
+          - $values/{{ $.Values.clientValues.clientName }}/{{ $.Values.environmentConfig.envName }}/infra/{{ $application.name }}/applicationValues.yaml
+    - repoURL: {{ $.Values.repositoryURL }}
+      targetRevision: {{ $.Values.ref }}
+      ref: values
+  destination:
+    server: {{ $.Values.environmentConfig.cluster }}
+    namespace: {{ $application.namespace }}
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
+{{- end }}

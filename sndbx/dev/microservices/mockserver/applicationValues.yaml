@@ -1,0 +1,17 @@
+mockserver:
+  properties: |
+    mockserver.initializationJsonPath=/config/initializerJson.json
+    mockserver.watchInitializationJson=true
+  initializerJson: |
+    [
+      {
+        "httpRequest": {
+          "method" : "POST",
+          "path": "/webhook-url"
+        },
+        "httpResponse": {
+          "statusCode": 200,
+          "body": "OK"
+        }
+      }
+    ]

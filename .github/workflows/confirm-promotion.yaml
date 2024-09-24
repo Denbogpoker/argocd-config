@@ -1,0 +1,17 @@
+name: Apply code changes
+run-name: Apply code changes
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - 'main'
+
+concurrency:
+  group: ${{ github.repository }}-code-changes
+  cancel-in-progress: false
+
+jobs:
+  apply-code-changes:
+    uses: TDS/tds-automation/.github/workflows/merge-pr.yml@main

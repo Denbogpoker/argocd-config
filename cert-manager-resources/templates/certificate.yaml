@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Values.clientValues.clientName }}-{{ .Values.environmentConfig.envName }}-certificate
+  namespace: {{ .Values.namespace }}
+spec:
+  secretName: {{ .Values.clientValues.clientName }}-{{ .Values.environmentConfig.envName }}-certificate
+  privateKey:
+    rotationPolicy: Always
+  dnsNames:
+  {{- range .Values.dnsZones }}
+    - {{ .name }}
+  {{- end }}    
+  issuerRef:
+    name: {{ .Values.clientValues.clientName }}-{{ .Values.environmentConfig.envName }}-clusterissuer
+    kind: ClusterIssuer

@@ -1,0 +1,14 @@
+name: identity-config
+
+clientValues:
+  clientName: "dummyClientName"
+
+environmentConfig:
+  envName: "dummyEnv"
+  tokenIssuer: "dummyTokenIssuer"
+
+configMap:
+  app:
+    jwksUri: "http://issue-token.apps.svc.cluster.local:8080/jwks.json"
+    validateTokenUri: "http://issue-token.apps.svc.cluster.local:8080/auth/validate"
+    issueTokenUri: "http://issue-token.apps.svc.cluster.local:8080/token"
