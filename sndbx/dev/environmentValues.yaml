@@ -1,6 +1,6 @@
 environmentConfig:
   envName: dev
-  cluster: "https://aks-npiu7jaa.hcp.northeurope.azmk8s.io:443"
+  cluster: "https://kubernetes.default.svc"
   namespace: apps
   keyVaulName: "kv-dev-northeurope-sndbx"
   keyVaultUrl: "https://kv-dev-northeurope-sndbx.vault.azure.net/"
