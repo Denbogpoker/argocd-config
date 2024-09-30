@@ -19,11 +19,6 @@ infrastructureApps:
     applicationRepositoryUrl: https://stefanprodan.github.io/podinfo
     namespace: apps
     chart: "podinfo"
-  - name: "prometheus"
-    version: 25.25.0
-    applicationRepositoryUrl: https://prometheus-community.github.io/helm-charts
-    namespace: apps
-    chart: "prometheus-community"
 #  - name: grafana
 #    version: 1.4.2
 #    applicationRepositoryUrl: https://grafana.github.io/helm-charts
