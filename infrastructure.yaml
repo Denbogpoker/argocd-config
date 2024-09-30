@@ -4,21 +4,21 @@ infrastructureApps:
     version: main
     namespace: apps
     path: secret-provider-class
-  - name: reflector
-    version: v7.1.288
-    applicationRepositoryUrl: https://emberstack.github.io/helm-charts
-    chart: reflector
-    namespace: reflector
-  - name: cert-manager
-    version: v1.15.3
-    applicationRepositoryUrl: https://charts.jetstack.io
-    chart: cert-manager
-    namespace: cert-manager
-  - name: "podinfo"
-    version: 6.6.0
-    applicationRepositoryUrl: https://stefanprodan.github.io/podinfo
-    namespace: apps
-    chart: "podinfo"
+  # - name: reflector
+  #   version: v7.1.288
+  #   applicationRepositoryUrl: https://emberstack.github.io/helm-charts
+  #   chart: reflector
+  #   namespace: reflector
+  # - name: cert-manager
+  #   version: v1.15.3
+  #   applicationRepositoryUrl: https://charts.jetstack.io
+  #   chart: cert-manager
+  #   namespace: cert-manager
+  # - name: "podinfo"
+  #   version: 6.6.0
+  #   applicationRepositoryUrl: https://stefanprodan.github.io/podinfo
+  #   namespace: apps
+  #   chart: "podinfo"
 #  - name: grafana
 #    version: 1.4.2
 #    applicationRepositoryUrl: https://grafana.github.io/helm-charts
