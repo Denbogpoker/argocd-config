@@ -17,7 +17,7 @@ infrastructureApps:
   - name: "podinfo"
     version: 6.6.0
     applicationRepositoryUrl: https://stefanprodan.github.io/podinfo
-    deploymentRepositoryTargetRevision: main
+    namespace: apps
     chart: "podinfo"
 #  - name: grafana
 #    version: 1.4.2
