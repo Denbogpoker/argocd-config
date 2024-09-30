@@ -20,7 +20,7 @@ infrastructureApps:
     namespace: apps
     chart: "podinfo"
   - name: "prometheus"
-    version: 6.6.3
+    version: 25.25.0
     applicationRepositoryUrl: https://prometheus-community.github.io/helm-charts
     namespace: apps
     chart: "prometheus-community"
