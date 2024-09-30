@@ -14,11 +14,11 @@ infrastructureApps:
     applicationRepositoryUrl: https://charts.jetstack.io
     chart: cert-manager
     namespace: cert-manager
-  - name: grafana
-    version: 1.4.2
-    applicationRepositoryUrl: https://grafana.github.io/helm-charts
-    chart: k8s-monitoring
-    namespace: monitoring
+#  - name: grafana
+#    version: 1.4.2
+#    applicationRepositoryUrl: https://grafana.github.io/helm-charts
+#    chart: k8s-monitoring
+#    namespace: monitoring
   # - name: ingress-azure
   #   version: 1.7.3
   #   applicationRepositoryUrl: https://appgwingress.blob.core.windows.net/ingress-azure-helm-package/
