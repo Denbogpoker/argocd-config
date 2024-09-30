@@ -14,6 +14,11 @@ infrastructureApps:
     applicationRepositoryUrl: https://charts.jetstack.io
     chart: cert-manager
     namespace: cert-manager
+  - name: "podinfo"
+    version: 6.6.0
+    applicationRepositoryUrl: https://stefanprodan.github.io/podinfo
+    deploymentRepositoryTargetRevision: main
+    chart: "podinfo"
 #  - name: grafana
 #    version: 1.4.2
 #    applicationRepositoryUrl: https://grafana.github.io/helm-charts
