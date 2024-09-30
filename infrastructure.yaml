@@ -9,16 +9,21 @@ infrastructureApps:
     applicationRepositoryUrl: https://emberstack.github.io/helm-charts
     chart: reflector
     namespace: reflector
+  - name: cert-manager
+    version: v1.14.5
+    applicationRepositoryUrl: https://charts.jetstack.io
+    chart: cert-manager
+    namespace: cert-manager
   # - name: ingress-azure
   #   version: 1.7.3
   #   applicationRepositoryUrl: https://appgwingress.blob.core.windows.net/ingress-azure-helm-package/
   #   chart: ingress-azure
   #   namespace: kube-system
-  # - name: cert-manager
-  #   version: v1.14.5
-  #   applicationRepositoryUrl: https://charts.jetstack.io
-  #   chart: cert-manager
-  #   namespace: cert-manager
+#   - name: cert-manager
+#     version: v1.14.5
+#     applicationRepositoryUrl: https://charts.jetstack.io
+#     chart: cert-manager
+#     namespace: cert-manager
   # - name: cert-manager-resources
   #   applicationRepositoryUrl: https://github.dev.global.tesco.org/TDS/helm-charts.git
   #   version: main
