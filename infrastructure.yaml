@@ -5,7 +5,7 @@ infrastructureApps:
     namespace: apps
     path: secret-provider-class
   - name: reflector
-    version: v7.1.216
+    version: v7.1.288
     applicationRepositoryUrl: https://emberstack.github.io/helm-charts
     chart: reflector
     namespace: reflector
