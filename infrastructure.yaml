@@ -18,7 +18,7 @@ infrastructureApps:
      version: v7.1.216
      applicationRepositoryUrl: https://emberstack.github.io/helm-charts
      chart: reflector
-  #   namespace: reflector
+     namespace: reflector
   # - name: cert-manager-resources
   #   applicationRepositoryUrl: https://github.dev.global.tesco.org/TDS/helm-charts.git
   #   version: main
