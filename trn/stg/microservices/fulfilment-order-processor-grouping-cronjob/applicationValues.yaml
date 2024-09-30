@@ -1,0 +1,21 @@
+name: fulfilment-order-processor-grouping-cronjob
+
+image:
+  tag: "91ddd72"
+
+cronjob:
+  redeliveryEvents:
+    suspend: false
+    schedule: "0/30 * * * *"
+
+args:
+  - "-clientId"
+  - "{{ .Values.environmentConfig.clients.fulfilmentOrderProcessorGroupingCronJob }}"
+  - "-keyVaultUri"
+  - "{{ .Values.environmentConfig.keyVaultUrl }}"
+  - "-secretName"
+  - "fop-grouping-cronjob-secret"
+  - "-tokenEndpoint"
+  - "http://issue-token.apps.svc.cluster.local:8080/token"
+  - "-endpointToTrigger"
+  - "http://fop.apps.svc.cluster.local:8280/v1/orders/group"

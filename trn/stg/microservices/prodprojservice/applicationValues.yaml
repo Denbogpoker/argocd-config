@@ -1,0 +1,14 @@
+configMap:
+  allowLists:
+    ppsSync: "{{ .Values.environmentConfig.clients.ppsSyncCronJob }},{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }}"
+    ppsGetProductByIdsV3: "{{ .Values.environmentConfig.clients.orderAdapter }},{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.pickingService }}"
+    ppsGetProductByIdsV1: "{{ .Values.environmentConfig.clients.fulfilmentOrderProcessor }},{{ .Values.environmentConfig.clients.systemTests }}"
+    ppsGetProductByIdsV2: "{{ .Values.environmentConfig.clients.logisticUnitService }},{{ .Values.environmentConfig.clients.operationsDataService }}"
+    ppsGetProductLocationsByIdsV2: "{{ .Values.environmentConfig.clients.logisticUnitService }},{{ .Values.environmentConfig.clients.operationsDataService }}"
+    ppsCopyFulfilmentAtrributeV2: "{{ .Values.environmentConfig.clients.fpsStoreConfig }}"
+    ppsGetProductLocationsByIdsV1: "{{ .Values.environmentConfig.clients.pickingService }}"
+    ppsGetSubClassV1: "{{ .Values.environmentConfig.clients.gravity }}"
+  couchbase:
+    performSyncDataRemoval: "false"
+  otel:
+    otelInstrumentationCommonDefaultEnabled: "true" 

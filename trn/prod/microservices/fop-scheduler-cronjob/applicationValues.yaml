@@ -1,0 +1,16 @@
+name: fop-scheduler-cronjob
+
+image:
+  tag: "91ddd72"
+
+args:
+  - "-clientId"
+  - "{{ .Values.environmentConfig.clients.fulfilmentOrderProcessorSchedulerCronJob }}"
+  - "-keyVaultUri"
+  - "{{ .Values.environmentConfig.keyVaultUrl }}"
+  - "-secretName"
+  - "fop-scheduler-cronjob-secret"
+  - "-tokenEndpoint"
+  - "http://issue-token.apps.svc.cluster.local:8080/token"
+  - "-endpointToTrigger"
+  - "http://fop.apps.svc.cluster.local:8280/v1/orders/schedule"

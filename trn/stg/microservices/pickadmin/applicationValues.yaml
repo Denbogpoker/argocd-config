@@ -1,0 +1,5 @@
+configMap:
+  allowLists:
+    onboardStoresV3: "{{ .Values.environmentConfig.clients.fpsStoreConfig }}"
+    fetchStorePickingConfig: "{{ .Values.environmentConfig.clients.logisticUnitService }},{{ .Values.environmentConfig.clients.gravity }}"
+    epbzCallbacksV1: "{{ .Values.environmentConfig.clients.pickAdmin }}"

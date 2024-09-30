@@ -1,0 +1,21 @@
+name: pickingservice-buffer-check-cronjob
+
+image:
+  tag: "91ddd72"
+
+cronjob:
+  redeliveryEvents:
+    suspend: false
+    schedule: "0/5 * * * *"
+
+args:
+  - "-clientId"
+  - "{{ .Values.environmentConfig.clients.pickingServiceBufferCheckCronJob }}"
+  - "-keyVaultUri"
+  - "{{ .Values.environmentConfig.keyVaultUrl }}"
+  - "-secretName"
+  - "picking-service-buffer-check-cronjob-secret"
+  - "-tokenEndpoint"
+  - "http://issue-token.apps.svc.cluster.local:8080/token"
+  - "-endpointToTrigger"
+  - "http://pickingservice.apps.svc.cluster.local:8184/v2/pick/printingAreas/batchBufferCheckCron"

@@ -1,0 +1,3 @@
+configMap:
+  allowLists:
+    generateCards: "{{ .Values.environmentConfig.clients.cardPin }}"

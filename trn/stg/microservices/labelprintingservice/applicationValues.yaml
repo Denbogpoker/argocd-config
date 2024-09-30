@@ -1,0 +1,6 @@
+configMap:
+  allowLists:
+    printLabelsV1: "{{ .Values.environmentConfig.clients.gravity }}"
+    testPrinterConnectionV1: "{{ .Values.environmentConfig.clients.clientCredentialsService }}"
+  otel:
+    otelInstrumentationCommonDefaultEnabled: "true"

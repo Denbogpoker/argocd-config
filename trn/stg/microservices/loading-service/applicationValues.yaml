@@ -1,0 +1,5 @@
+configMap:
+  allowLists:
+    getTripsV1: "{{ .Values.environmentConfig.clients.gravity }}"
+  otel:
+    otelInstrumentationCommonDefaultEnabled: "true"

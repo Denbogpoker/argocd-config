@@ -1,0 +1,16 @@
+configMap:
+  identityProvidersConfig: |
+    [
+      {
+        "domains": ["auth0-placeholder.tesco.com"],
+        "name": "auth0",
+        "url": "https://fsni-stg.au.auth0.com",
+        "clientId": "O6lgHXrEk92OAC2gVwsTW30UU7QBJLW5"
+      },
+      {
+        "domains": ["tesco.com"],
+        "name": "onelogin",
+        "url": "https://kemalcakir-dev.onelogin.com/oidc/2",
+        "clientId": "11d0eba0-2b84-013b-66fe-02a50d3073fd217150"
+      }
+    ]

@@ -1,0 +1,21 @@
+name: webhook-delivery-service-retry-cronjob
+
+image:
+  tag: "91ddd72"
+
+cronjob:
+  redeliveryEvents:
+    suspend: false
+    schedule: "0/15 * * * *"
+
+args:
+  - "-clientId"
+  - "{{ .Values.environmentConfig.clients.webhookDeliveryServiceCronJob }}"
+  - "-keyVaultUri"
+  - "{{ .Values.environmentConfig.keyVaultUrl }}"
+  - "-secretName"
+  - "webhook-delivery-service-cronjob-secret"
+  - "-tokenEndpoint"
+  - "http://issue-token.apps.svc.cluster.local:8080/token"
+  - "-endpointToTrigger"
+  - "http://webhook-delivery-service.apps.svc.cluster.local:8189/trigger-redelivery"

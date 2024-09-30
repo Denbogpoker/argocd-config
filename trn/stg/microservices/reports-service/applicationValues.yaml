@@ -1,0 +1,7 @@
+configMap:
+  allowLists:
+    generateMwplReport: "{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }},{{ .Values.environmentConfig.clients.gravity }}"
+    generateTripSummaryReport: "{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }},{{ .Values.environmentConfig.clients.gravity }}"
+    generateDosReport: "{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }},{{ .Values.environmentConfig.clients.gravity }}"
+  otel:
+    otelInstrumentationCommonDefaultEnabled: "true"

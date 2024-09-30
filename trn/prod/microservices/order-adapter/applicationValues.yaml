@@ -1,0 +1,9 @@
+configMap:
+  allowLists:
+    createOrder: "{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }},{{ .Values.environmentConfig.clients.frontEndTests }}"
+    cancelOrder: "{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }},{{ .Values.environmentConfig.clients.frontEndTests }}"
+    updatePaymentStatus: "{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }},{{ .Values.environmentConfig.clients.frontEndTests }}"
+    queryOrders: "{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }}"
+    createTrip: "{{ .Values.environmentConfig.clients.clientCredentialsService }},{{ .Values.environmentConfig.clients.systemTests }},{{ .Values.environmentConfig.clients.frontEndTests }}"
+  otel:
+    otelInstrumentationCommonDefaultEnabled: "true"

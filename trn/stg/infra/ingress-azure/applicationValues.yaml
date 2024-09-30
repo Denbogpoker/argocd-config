@@ -1,0 +1,21 @@
+appgw:
+  subscriptionId: "c293e084-4429-40d1-a197-c69c22ffadc1"
+  resourceGroup: "rg-dev-northeurope-sndbx"
+  name:  "agw-dev-northeurope-sndbx"
+  usePrivateIP: false
+  shared: false
+
+armAuth:
+  type: workloadIdentity
+  identityClientID: "9bdf13c5-b1e1-4118-8bc1-1ac737f65ec9"
+
+resources:
+  limits:
+    cpu: 800m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+
+rbac:
+  enabled: true # true/false
