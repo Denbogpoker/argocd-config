@@ -19,33 +19,3 @@ infrastructureApps:
     applicationRepositoryUrl: https://stefanprodan.github.io/podinfo
     namespace: apps
     chart: "podinfo"
-  - name: "prometheus"
-    version: 25.25.0
-    applicationRepositoryUrl: https://prometheus-community.github.io/helm-charts
-    namespace: apps
-    chart: "prometheus-community"
-#  - name: grafana
-#    version: 1.4.2
-#    applicationRepositoryUrl: https://grafana.github.io/helm-charts
-#    chart: k8s-monitoring
-#    namespace: monitoring
-  # - name: ingress-azure
-  #   version: 1.7.3
-  #   applicationRepositoryUrl: https://appgwingress.blob.core.windows.net/ingress-azure-helm-package/
-  #   chart: ingress-azure
-  #   namespace: kube-system
-#   - name: cert-manager
-#     version: v1.14.5
-#     applicationRepositoryUrl: https://charts.jetstack.io
-#     chart: cert-manager
-#     namespace: cert-manager
-  # - name: cert-manager-resources
-  #   applicationRepositoryUrl: https://github.dev.global.tesco.org/TDS/helm-charts.git
-  #   version: main
-  #   namespace: cert-manager
-  #   path: cert-manager-resources
-  # - name: grafana
-  #   version: 1.4.2
-  #   applicationRepositoryUrl: https://grafana.github.io/helm-charts
-  #   chart: k8s-monitoring
-  #   namespace: monitoring
