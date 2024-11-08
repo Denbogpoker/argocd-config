@@ -9,13 +9,3 @@ infrastructureApps:
     applicationRepositoryUrl: https://emberstack.github.io/helm-charts
     chart: reflector
     namespace: reflector
-  - name: cert-manager
-    version: v1.15.3
-    applicationRepositoryUrl: https://charts.jetstack.io
-    chart: cert-manager
-    namespace: cert-manager
-  - name: "podinfo"
-    version: 6.6.3
-    applicationRepositoryUrl: https://stefanprodan.github.io/podinfo
-    namespace: apps
-    chart: "podinfo"
